@@ -2,7 +2,8 @@ import './App.css';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
-import { Button } from '@mui/material';
+import Button from '@mui/material/Button';
+
 
 const PokemonRow = ({ pokemon, onSelect }) => (
   <tr >
