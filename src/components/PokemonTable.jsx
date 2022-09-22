@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PokemonRow from './PokemonRow';
 import styled from '@emotion/styled';
+import PokemonContext from '../PokemonContext';
 const Th = styled.th`
   text-align: left;
   font-size: x-large;
 `;
 
-const PokemonTable = ({ pokemon, filter, selectedPokemonSet }) => {
+const PokemonTable = () => {
+  const { pokemon, filter, selectedPokemonSet } = useContext(PokemonContext);
   return (
     <table width="100%">
       <thead>

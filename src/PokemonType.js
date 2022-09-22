@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 const PokemonType = PropTypes.shape({
   id: PropTypes.string.isRequired,
@@ -8,7 +8,7 @@ const PokemonType = PropTypes.shape({
     chinese: PropTypes.string.isRequired,
     french: PropTypes.string.isRequired,
   }),
-  type: PropTypes.arrayOf(PropTypes.string).isRequired,
+  type: PropTypes.arrayOf(PropTypes.string.isRequired),
   base: PropTypes.shape({
     HP: PropTypes.number.isRequired,
     Attack: PropTypes.number.isRequired,
@@ -16,7 +16,7 @@ const PokemonType = PropTypes.shape({
     "Sp. Attack": PropTypes.number.isRequired,
     "Sp. Defense": PropTypes.number.isRequired,
     Speed: PropTypes.number.isRequired,
-  })
+  }),
 });
 
 export default PokemonType;

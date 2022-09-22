@@ -1,21 +1,17 @@
 import { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
+import { CssBaseline } from '@mui/material';
+
+import PokemonContext from './PokemonContext';
+
+import PokemonFilter from './components/PokemonFilter';
+import PokemonInfo from './components/PokemonInfo';
+import PokemonTable from './components/PokemonTable';
 
 import './App.css';
 
-import PokemonInfo from './components/PokemonInfo';
-import { CssBaseline } from '@mui/material';
-import PokemonFilter from './components/PokemonFilter';
-import PokemonTable from './components/PokemonTable';
-
 const Title = styled.h1`
   text-align: center
-`;
-
-const TwoColumnLayout = styled.div`
-  display: grid;
-  grid-template-columns: 70% 30%;
-  grid-column-gap: 1rem;
 `;
 
 const PageContainer = styled.div`
@@ -24,10 +20,13 @@ const PageContainer = styled.div`
   padding-top: 1rem;
 `;
 
-
+const TwoColumnLayout = styled.div`
+  display: grid;
+  grid-template-columns: 80% 20%;
+  grid-column-gap: 1rem;
+`;
 
 function App() {
-
   const [filter, filterSet] = useState("");
   const [pokemon, pokemonSet] = useState([]);
   const [selectedPokemon, selectedPokemonSet] = useState(null);
@@ -43,25 +42,29 @@ function App() {
   }
 
   return (
-    <PageContainer>
-      <CssBaseline />
-      <Title>Pokemon Search</Title>
-      <TwoColumnLayout>
-        <div>
-          <PokemonFilter
-            filter={filter}
-            filterSet={filterSet}
-          />
-          <PokemonTable
-            pokemon={pokemon}
-            filter={filter}
-            selectedPokemonSet={selectedPokemonSet}
-          />
-        </div>
-        {selectedPokemon && <PokemonInfo {...selectedPokemon} />}
-      </TwoColumnLayout>
-    </PageContainer>
+    <PokemonContext.Provider
+      value={{
+        filter,
+        filterSet,
+        pokemon,
+        pokemonSet,
+        selectedPokemon,
+        selectedPokemonSet
+      }}
+    >
+      <PageContainer>
+        <CssBaseline />
+        <Title>Pokemon Search</Title>
+        <TwoColumnLayout>
+          <div>
+            <PokemonFilter />
+            <PokemonTable />
+          </div>
+          <PokemonInfo />
+        </TwoColumnLayout>
+      </PageContainer>
+    </PokemonContext.Provider>
   );
 }
 
-export default App;;
+export default App;
