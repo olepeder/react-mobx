@@ -2,7 +2,6 @@ import { observer } from 'mobx-react';
 
 import store from '../store';
 
-
 const PokemonInfo = () => {
   return store.selectedPokemon ? (
     <div>
