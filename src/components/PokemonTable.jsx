@@ -1,7 +1,7 @@
 import React from 'react';
 import PokemonRow from './PokemonRow';
 import styled from '@emotion/styled';
-import { useSelector, useDispatch } from 'react-redux';
+import useStore from '../store';
 
 const Th = styled.th`
   text-align: left;
@@ -9,9 +9,9 @@ const Th = styled.th`
 `;
 
 const PokemonTable = () => {
-  const dispatch = useDispatch();
-  const pokemon = useSelector(state => state.pokemon);
-  const filter = useSelector(state => state.filter);
+  const pokemon = useStore(state => state.pokemon);
+  const filter = useStore(state => state.filter);
+  const setSelectedPokemon = useStore(state => state.setSelectedPokemon);
 
 
   return (
@@ -33,10 +33,7 @@ const PokemonTable = () => {
             <PokemonRow
               key={pokemon.id}
               pokemon={pokemon}
-              onClick={(pokemon) => dispatch({
-                type: "SET_SELECTED_POKEMON",
-                payload: pokemon
-              })}
+              onClick={(pokemon) => setSelectedPokemon(pokemon)}
             />
           ))}
       </tbody>

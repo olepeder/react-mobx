@@ -1,6 +1,4 @@
 import Button from '@mui/material/Button';
-import PokemonType from '../PokemonType';
-import { PropTypes } from 'prop-types';
 
 const PokemonRow = ({ pokemon, onClick }) => (
   <>
@@ -19,9 +17,5 @@ const PokemonRow = ({ pokemon, onClick }) => (
     </tr>
   </>
 );
-
-PokemonRow.propTypes = {
-  pokemon: PropTypes.arrayOf(PokemonType)
-};
 
 export default PokemonRow;
