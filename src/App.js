@@ -5,7 +5,7 @@ import PokemonFilter from './components/PokemonFilter';
 import PokemonInfo from './components/PokemonInfo';
 import PokemonTable from './components/PokemonTable';
 
-import useStore from './store';
+import store from './store';
 
 import './App.css';
 
@@ -26,14 +26,12 @@ const TwoColumnLayout = styled.div`
 `;
 
 function App() {
-  const pokemon = useStore(state => state.pokemon);
 
-  if (!pokemon) {
+  if (!store.pokemon) {
     return <div>Loading data</div>;
   }
 
   return (
-
     <PageContainer>
       <CssBaseline />
       <Title>Pokemon Search</Title>

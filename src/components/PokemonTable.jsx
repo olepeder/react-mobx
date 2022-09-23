@@ -1,7 +1,8 @@
 import React from 'react';
 import PokemonRow from './PokemonRow';
 import styled from '@emotion/styled';
-import useStore from '../store';
+import store from '../store';
+import { observer } from 'mobx-react';
 
 const Th = styled.th`
   text-align: left;
@@ -9,9 +10,6 @@ const Th = styled.th`
 `;
 
 const PokemonTable = () => {
-  const pokemon = useStore(state => state.pokemon);
-  const filter = useStore(state => state.filter);
-  const setSelectedPokemon = useStore(state => state.setSelectedPokemon);
 
 
   return (
@@ -23,21 +21,21 @@ const PokemonTable = () => {
         </tr>
       </thead>
       <tbody>
-        {pokemon
+        {store.pokemon
           .filter(({ name: { english } }) => english
             .toLocaleLowerCase()
-            .includes(filter.toLocaleLowerCase())
+            .includes(store.filter.toLocaleLowerCase())
           )
           .slice(0, 20)
           .map((pokemon) => (
             <PokemonRow
               key={pokemon.id}
               pokemon={pokemon}
-              onClick={(pokemon) => setSelectedPokemon(pokemon)}
+              onClick={(pokemon) => store.setSelectedPokemon(pokemon)}
             />
           ))}
       </tbody>
     </table>);
 };
 
-export default PokemonTable;
+export default observer(PokemonTable);
