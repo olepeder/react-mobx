@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import styled from '@emotion/styled';
 import { CssBaseline } from '@mui/material';
 
@@ -28,13 +27,6 @@ const TwoColumnLayout = styled.div`
 
 function App() {
   const pokemon = useStore(state => state.pokemon);
-  const setPokemon = useStore(state => state.setPokemon);
-
-  useEffect(() => {
-    fetch("http://localhost:3000/starting-react/pokemon.json")
-      .then((resp) => resp.json())
-      .then(pokemon => setPokemon(pokemon));
-  }, [setPokemon]);
 
   if (!pokemon) {
     return <div>Loading data</div>;
